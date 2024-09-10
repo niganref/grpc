@@ -2,6 +2,7 @@
 
 
 ## 想定してるフォルダ構成
+```
 src/
 ├── modules/
 │   ├── user/ #モジュール名         
@@ -17,7 +18,12 @@ src/
 │   ├── infrastructure/
 │   └── config.rs
 └── main.rs   
-
+```
 
 ## マイグレーションコマンド
 sea-orm-cli migrate refresh
+
+## Entity作成
+sea-orm-cli generate entity \
+    -u mysql://user:pass@localhost:6000/myDB \
+    -o src/entities

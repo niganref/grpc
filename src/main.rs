@@ -1,14 +1,16 @@
 use futures::executor::block_on;
 use sea_orm::{Database, DbErr};
 use std::env;
+use dotenvy::dotenv;
 
 
 
-const DATABASE_URL: &str = "mysql://user:pass@localhost:6000";
-const DB_NAME: &str = "my_db";
+// const DATABASE_URL: &str = "mysql://user:pass@localhost:6000";
+// const DB_NAME: &str = "my_db";
 
 async fn run() -> Result<(), DbErr> {
-    let db = Database::connect(DATABASE_URL).await?;
+    dotenv().expect(".env file not found");
+    let db = Database::connect(env::var("DATABASE_URL").unwrap()).await?;
     println!("{:?}",db);
     Ok(())
 }
